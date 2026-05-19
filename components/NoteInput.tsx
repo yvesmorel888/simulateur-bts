@@ -34,10 +34,17 @@ export default function NoteInput({ epreuve, note, onChange, couleurBTS, modalit
   const type            = getTypeMatiere(epreuve);
   const isTechnique     = type === "professionnelle";
 
-  // En alternance, le CCF devient épreuve ponctuelle terminale
-  const natureEffective = (modalite === "alternance" && epreuve.nature === "ccf")
-    ? "ponctuelle"
+  // En alternance :
+  //   - si natureAlternance est défini → on l'utilise directement (ex: "oral", "ecrit")
+  //   - sinon, si nature === "ccf" → "ponctuelle" (générique)
+  //   - sinon → nature inchangée
+  const natureEffective = modalite === "alternance"
+    ? (epreuve.natureAlternance ?? (epreuve.nature === "ccf" ? "ponctuelle" : epreuve.nature))
     : epreuve.nature;
+
+  const descriptionEffective = modalite === "alternance" && epreuve.descriptionAlternance
+    ? epreuve.descriptionAlternance
+    : epreuve.description;
 
   // Niveaux d'alerte
   const seuilElim    = epreuve.noteEliminatoire ?? 6;
@@ -146,13 +153,13 @@ export default function NoteInput({ epreuve, note, onChange, couleurBTS, modalit
         </div>
 
         {/* Description */}
-        {epreuve.description && (
+        {descriptionEffective && (
           <div style={{
             fontSize: "11px", color: "#94a3b8", marginTop: "1px",
             overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
           }}
             className="hidden sm:block">
-            {epreuve.description}
+            {descriptionEffective}
           </div>
         )}
       </div>

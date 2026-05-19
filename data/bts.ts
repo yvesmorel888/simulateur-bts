@@ -25,9 +25,11 @@ export interface Epreuve {
   code: string;
   libelle: string;
   coefficient: number;          // peut être décimal (ex. 1.5)
-  nature: NatureEpreuve;
+  nature: NatureEpreuve;        // modalité en formation initiale
+  natureAlternance?: NatureEpreuve; // modalité en alternance (si différente du cas ccf→ponctuelle générique)
   noteEliminatoire?: number;
-  description?: string;
+  description?: string;         // libellé modalité en formation initiale
+  descriptionAlternance?: string; // libellé modalité en alternance (si différent)
 }
 
 export interface BTS {
@@ -102,10 +104,10 @@ const btsMCO: BTS = {
     e("mco-e2","E2","LVE1 – Compréhension écrite et expression écrite", 1.5,"ecrit", "Écrit — 2h"),
     e("mco-e3","E3","LVE1 – Compréhension orale et production orale",   1.5,"oral",  "Oral — 20 min (+20 min prépa)"),
     e("mco-e4","E4","Culture économique, juridique et managériale",      3,  "ecrit", "CEJM — 4h"),
-    e("mco-e5","E5","Développement de la relation client et vente-conseil", 3, "oral","CCF ou ponctuel oral — 30 min"),
-    e("mco-e6","E6","Animation et dynamisation de l'offre commerciale",  3,  "oral",  "CCF ou ponctuel oral — 30 min"),
+    { ...e("mco-e5","E5","Développement de la relation client et vente-conseil", 3, "ccf", "CCF — oral 30 min"), natureAlternance: "oral" as NatureEpreuve, descriptionAlternance: "Ponctuel oral — 30 min" },
+    { ...e("mco-e6","E6","Animation et dynamisation de l'offre commerciale",  3, "ccf", "CCF — oral 30 min"), natureAlternance: "oral" as NatureEpreuve, descriptionAlternance: "Ponctuel oral — 30 min" },
     e("mco-e7","E7","Gestion opérationnelle",                            3,  "ecrit", "Écrit — 3h"),
-    e("mco-e8","E8","Management de l'équipe commerciale",                3,  "ecrit", "Écrit ou CCF — 2h30"),
+    { ...e("mco-e8","E8","Management de l'équipe commerciale",           3, "ccf",   "CCF — 2h30"), natureAlternance: "ecrit" as NatureEpreuve, descriptionAlternance: "Écrit ponctuel — 2h30" },
   ],
 };
 
@@ -123,7 +125,7 @@ const btsNDRC: BTS = {
     e("ndrc-e1","E1","Culture générale et expression",                          3,"ecrit","Écrit national — 4h"),
     e("ndrc-e2","E2","Langue vivante étrangère A",                             3,"ecrit","Écrit + oral"),
     e("ndrc-e3","E3","Culture économique, juridique et managériale",            3,"ecrit","CEJM — 4h"),
-    e("ndrc-e4","E4","Relation Client et Négociation-Vente (RCNV)",             5,"oral", "Oral ou CCF"),
+    { ...e("ndrc-e4","E4","Relation Client et Négociation-Vente (RCNV)",        5,"ccf",  "CCF"), natureAlternance: "oral" as NatureEpreuve, descriptionAlternance: "Ponctuel oral" },
     e("ndrc-e5","E5","Relation Client à Distance et Digitalisation (RCDD)",     4,"ccf",  "CCF"),
     e("ndrc-e6","E6","Relation Client et Animation de Réseaux (RCAR)",          3,"ccf",  "CCF"),
   ],
@@ -147,7 +149,7 @@ const btsCG: BTS = {
     e("cg-e41","E4.1","Traitement des opérations comptables, fiscales et sociales – Étude de cas",9,"ecrit","Écrit — 4h"),
     e("cg-e42","E4.2","Traitement des opérations comptables, fiscales et sociales – Pratiques",   4,"pratique","Épreuve pratique sur poste"),
     e("cg-e5", "E5", "Situations de contrôle de gestion et d'analyse financière",                5,"ecrit","Écrit — 3h"),
-    e("cg-e6", "E6", "Parcours de professionnalisation",                                         5,"oral","CCF + soutenance"),
+    { ...e("cg-e6","E6","Parcours de professionnalisation",                                       5,"ccf", "CCF + soutenance"), descriptionAlternance: "Ponctuel + soutenance" },
   ],
 };
 
@@ -325,7 +327,7 @@ const btsGTLA: BTS = {
   epreuves: [
     e("gtla-u1","U1","Culture générale et expression",                                            3,"ecrit","Écrit national — 3h"),
     e("gtla-u2","U2","Langue vivante étrangère – Compréhension écrite et expression écrite",      2,"ecrit","Écrit — 2h"),
-    e("gtla-u3","U3","Langue vivante étrangère – Production orale en continu et interaction",     1,"ccf",  "CCF ou oral"),
+    { ...e("gtla-u3","U3","Langue vivante étrangère – Production orale en continu et interaction", 1,"ccf",  "CCF — oral"), natureAlternance: "oral" as NatureEpreuve, descriptionAlternance: "Ponctuel oral" },
     e("gtla-u4","U4","Culture économique, juridique et managériale",                              4,"ecrit","CEJM — 4h"),
     e("gtla-u5","U5","Mise en œuvre d'opérations de transport et de prestations logistiques",    6,"ccf",  "CCF — situations professionnelles"),
     e("gtla-u6","U6","Conception des opérations de transport et de prestations logistiques",      6,"ecrit","Étude de cas — 4h"),
