@@ -327,7 +327,7 @@ export default function SimulateurBTS() {
 
                   {/* Sous-ligne */}
                   <p style={{ margin: "5px 0 0", fontSize: "12px", color: "#bfdbfe" }}>
-                    Formation initiale &amp; alternance · Marseille 13e
+                    Formation initiale &amp; alternance · Marseille 6e
                   </p>
                 </a>
               )}
