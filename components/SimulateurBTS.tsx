@@ -135,9 +135,33 @@ export default function SimulateurBTS() {
               border: "1px solid #e8eef5", boxShadow: "0 1px 6px rgba(0,0,0,.06)",
               padding: "20px",
             }}>
-              <StepLabel n={1} text="Formation" />
+              <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{
+                    width: "22px", height: "22px", borderRadius: "50%",
+                    background: "#eff6ff", color: "#1e3799",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "12px", fontWeight: 800, flexShrink: 0,
+                  }}>1</span>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#475569", textTransform: "uppercase", letterSpacing: ".07em" }}>
+                    Ta formation
+                  </span>
+                </div>
+                <span style={{ fontSize: "12px", color: "#1e3799", fontWeight: 600 }}>
+                  {catalogueBTS.length} BTS disponibles
+                </span>
+              </div>
+
               <BTSCombobox value={btsActif} onChange={changerBTS} />
-              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "10px" }}>
+
+              <p style={{ fontSize: "12px", color: "#64748b", margin: "10px 0 4px", display: "flex", alignItems: "center", gap: "6px" }}>
+                <svg style={{ width: "13px", height: "13px", color: "#1e3799", flexShrink: 0 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20A10 10 0 0012 2z" />
+                </svg>
+                Clique sur la carte ci-dessus pour changer de BTS — tu peux aussi taper le nom ou le code pour filtrer.
+              </p>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "6px" }}>
                 <svg style={{ width: "13px", height: "13px", color: "#cbd5e1", flexShrink: 0 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>

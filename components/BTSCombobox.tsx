@@ -52,43 +52,83 @@ export default function BTSCombobox({ value, onChange }: Props) {
   return (
     <div ref={containerRef} style={{ position: "relative", width: "100%" }}>
 
-      {/* ── Trigger ── */}
+      {/* ── Carte de sélection ── */}
       <button
         onClick={() => setOpen((o) => !o)}
         style={{
-          width: "100%", display: "flex", alignItems: "center",
-          justifyContent: "space-between", gap: "10px",
-          padding: "12px 14px", borderRadius: "10px",
-          border: open ? "1.5px solid #1e3799" : "1.5px solid #e2e8f0",
-          background: "#fff", cursor: "pointer", textAlign: "left",
-          boxShadow: open ? "0 0 0 3px rgba(30,55,153,.1)" : "none",
-          transition: "all .15s",
+          width: "100%", textAlign: "left", cursor: "pointer",
+          padding: "14px 16px",
+          borderRadius: "12px",
+          border: open ? "2px solid #1e3799" : "2px solid #e2e8f0",
+          background: open ? "#f8faff" : "#fff",
+          boxShadow: open
+            ? "0 0 0 4px rgba(30,55,153,.08)"
+            : "0 1px 4px rgba(0,0,0,.06)",
+          transition: "all .18s",
           fontFamily: "'Inter', system-ui, sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
-          <span style={{
-            width: "10px", height: "10px", borderRadius: "50%",
-            background: value.couleur, flexShrink: 0,
-          }} />
-          <span style={{ fontWeight: 700, fontSize: "14px", color: "#1e293b" }}>
-            BTS {value.code}
-          </span>
-          <span style={{ color: "#94a3b8", fontSize: "13px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-            className="hidden sm:inline">
-            — {value.libelle}
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
-          <span style={{ fontSize: "12px", color: "#94a3b8" }} className="hidden sm:inline">
-            {value.epreuves.length} épreuves · coeff {getTotalCoefficients(value)}
-          </span>
-          <svg
-            style={{ width: "16px", height: "16px", color: "#94a3b8", transition: "transform .2s", transform: open ? "rotate(180deg)" : "none" }}
-            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px" }}>
+
+          {/* Infos BTS */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", minWidth: 0, flex: 1 }}>
+            {/* Pastille couleur */}
+            <div style={{
+              width: "36px", height: "36px", borderRadius: "10px",
+              background: `${value.couleur}20`,
+              border: `2px solid ${value.couleur}40`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0, marginTop: "1px",
+            }}>
+              <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: value.couleur }} />
+            </div>
+
+            <div style={{ minWidth: 0 }}>
+              {/* Code + libelle */}
+              <div style={{ fontSize: "16px", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+                BTS {value.code}
+              </div>
+              <div style={{ fontSize: "13px", color: "#475569", marginTop: "2px", lineHeight: 1.4 }}>
+                {value.libelle}
+              </div>
+              {/* Méta */}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "6px", flexWrap: "wrap" }}>
+                <span style={{
+                  fontSize: "11px", fontWeight: 600, color: value.couleur,
+                  background: `${value.couleur}15`, padding: "2px 8px", borderRadius: "20px",
+                }}>
+                  {value.secteur}
+                </span>
+                <span style={{ fontSize: "11px", color: "#94a3b8" }}>
+                  {value.epreuves.length} épreuves · coeff {getTotalCoefficients(value)}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Changer */}
+          <div style={{
+            flexShrink: 0, display: "flex", flexDirection: "column",
+            alignItems: "flex-end", gap: "4px",
+          }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "5px",
+              padding: "6px 12px", borderRadius: "8px",
+              background: open ? "#1e3799" : "#eff6ff",
+              color: open ? "#fff" : "#1e3799",
+              fontSize: "12px", fontWeight: 700,
+              transition: "all .18s",
+            }}>
+              <svg style={{ width: "12px", height: "12px" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+              </svg>
+              Changer de BTS
+            </div>
+            <span style={{ fontSize: "10px", color: "#94a3b8" }}>
+              {catalogueBTS.length} formations dispo
+            </span>
+          </div>
+
         </div>
       </button>
 
@@ -116,7 +156,7 @@ export default function BTSCombobox({ value, onChange }: Props) {
               <input
                 ref={inputRef}
                 type="text"
-                placeholder="Rechercher un BTS…"
+                placeholder="Rechercher par nom, code ou secteur…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => {
