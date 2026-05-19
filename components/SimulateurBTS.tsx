@@ -289,30 +289,46 @@ export default function SimulateurBTS() {
               />
 
               {/* CTA Sully */}
-              {btsActif.disponibleSully && (
+              {btsActif.disponibleSully && btsActif.lienSully && (
                 <a
-                  href="https://www.ltpsully.com/bts/"
+                  href={btsActif.lienSully}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    display: "flex", alignItems: "center", justifyContent: "space-between",
-                    width: "100%", padding: "12px 16px",
-                    borderRadius: "12px", border: "1px solid #e8eef5",
-                    background: "#fff", textDecoration: "none",
-                    boxShadow: "0 1px 4px rgba(0,0,0,.05)",
-                    transition: "all .18s",
+                    display: "block", width: "100%", textDecoration: "none",
+                    borderRadius: "14px",
+                    background: "linear-gradient(135deg, #0c1f4d 0%, #1e3799 60%, #0c2461 100%)",
+                    padding: "16px 18px",
+                    boxShadow: "0 4px 14px rgba(30,55,153,.3)",
+                    transition: "all .2s",
                   }}
-                  className="hover:border-blue-200 hover:bg-blue-50 group"
+                  className="hover:opacity-90 hover:shadow-lg"
                 >
-                  <div>
-                    <p style={{ fontSize: "13px", fontWeight: 600, color: "#1e3799", margin: 0 }}>
-                      BTS {btsActif.code} à Sully Marseille
-                    </p>
-                    <p style={{ fontSize: "11px", color: "#94a3b8", margin: "2px 0 0" }}>
-                      Formation initiale &amp; alternance
-                    </p>
+                  {/* Ligne top */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "8px" }}>
+                    <span style={{
+                      fontSize: "10px", fontWeight: 700, color: "#93c5fd",
+                      textTransform: "uppercase", letterSpacing: ".1em",
+                    }}>
+                      Disponible à Sully Marseille
+                    </span>
+                    <span style={{
+                      fontSize: "11px", fontWeight: 600, color: "#fff",
+                      background: "rgba(255,255,255,.15)", padding: "3px 8px", borderRadius: "20px",
+                    }}>
+                      Voir la formation →
+                    </span>
                   </div>
-                  <span style={{ color: "#1e3799", fontSize: "18px" }}>→</span>
+
+                  {/* Titre */}
+                  <p style={{ margin: 0, fontSize: "15px", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em" }}>
+                    BTS {btsActif.code} — {btsActif.libelle}
+                  </p>
+
+                  {/* Sous-ligne */}
+                  <p style={{ margin: "5px 0 0", fontSize: "12px", color: "#bfdbfe" }}>
+                    Formation initiale &amp; alternance · Marseille 13e
+                  </p>
                 </a>
               )}
             </div>

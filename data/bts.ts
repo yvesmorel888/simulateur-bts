@@ -40,6 +40,7 @@ export interface BTS {
   epreuves: Epreuve[];
   disponibleSully: boolean;
   lienOfficiel: string;
+  lienSully?: string;           // URL landing page Sully (si disponibleSully)
   statut: StatutDonnees;
   sessionReference?: string;    // ex. "Session 2026 — arrêté du 8 juillet 2024"
 }
@@ -94,6 +95,7 @@ const btsMCO: BTS = {
   libelleComplet: "BTS Management Commercial Opérationnel",
   couleur: "#6366f1", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037562608",
+  lienSully: "https://www.ltpsully.com/formations/bts-mco/",
   statut: "vérifié", sessionReference: "Session 2026 — arrêté 8 juil. 2024",
   epreuves: [
     e("mco-e1","E1","Culture générale et expression",                    3,  "ecrit", "Écrit national — 3h"),
@@ -115,6 +117,7 @@ const btsNDRC: BTS = {
   libelleComplet: "BTS Négociation et Digitalisation de la Relation Client",
   couleur: "#8b5cf6", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000036672140",
+  lienSully: "https://www.ltpsully.com/formations/bts-alternance-ndrc/",
   statut: "vérifié", sessionReference: "Session 2026",
   epreuves: [
     e("ndrc-e1","E1","Culture générale et expression",                          3,"ecrit","Écrit national — 4h"),
@@ -134,6 +137,7 @@ const btsCG: BTS = {
   libelleComplet: "BTS Comptabilité et Gestion",
   couleur: "#0ea5e9", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032576111",
+  lienSully: "https://www.ltpsully.com/formations/bts-comptabilite-gestion/",
   statut: "vérifié", sessionReference: "Session 2026 — arrêté 8 juil. 2024",
   epreuves: [
     e("cg-e11","E1.1","Culture générale et expression",                                          4,"ecrit","Écrit — 4h"),
@@ -155,6 +159,7 @@ const btsGPME: BTS = {
   libelleComplet: "BTS Gestion de la PME",
   couleur: "#10b981", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000036672142",
+  lienSully: "https://www.ltpsully.com/formations/bts-alternance-gpme/",
   statut: "vérifié", sessionReference: "Session 2026",
   epreuves: [
     e("gpme-e1","E1","Culture générale et expression",                           4,"ecrit","Écrit — 4h"),
@@ -212,6 +217,7 @@ const btsAssurance: BTS = {
   libelleComplet: "BTS Assurance",
   couleur: "#f59e0b", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034133475",
+  lienSully: "https://www.ltpsully.com/formations/bts-assurance/",
   statut: "partiel", sessionReference: "Session 2026",
   epreuves: [
     e("ass-u1","U1","Culture générale et expression",                     3,"ecrit","Dissertation — 4h"),
@@ -232,6 +238,7 @@ const btsPI: BTS = {
   libelleComplet: "BTS Professions Immobilières",
   couleur: "#ec4899", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000048530487",
+  lienSully: "https://www.ltpsully.com/formations/bts-profession-immobilieres/",
   statut: "partiel", sessionReference: "Session 2026",
   epreuves: [
     e("pi-e1",  "E1",  "Culture générale et expression",                               4,"ecrit","Écrit — 3h"),
@@ -313,6 +320,7 @@ const btsGTLA: BTS = {
   libelleComplet: "BTS Gestion des Transports et Logistique Associée",
   couleur: "#f97316", disponibleSully: true,
   lienOfficiel: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037581901",
+  lienSully: "https://www.ltpsully.com/formations/bts-gtla/",
   statut: "vérifié", sessionReference: "Session 2026 — arrêté 8 juil. 2024",
   epreuves: [
     e("gtla-u1","U1","Culture générale et expression",                                            3,"ecrit","Écrit national — 3h"),
