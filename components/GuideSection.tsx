@@ -1,5 +1,19 @@
 "use client";
 
+import React from "react";
+
+// Styles partagés — déclarés avant SECTIONS pour éviter "used before declaration"
+const p:      React.CSSProperties = { fontSize: "14px", color: "#475569", lineHeight: 1.7, margin: "0 0 10px" };
+const ul:     React.CSSProperties = { margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "8px" };
+const li:     React.CSSProperties = { fontSize: "14px", color: "#475569", lineHeight: 1.7, paddingLeft: "16px", borderLeft: "2px solid #e2e8f0" };
+const strong: React.CSSProperties = { color: "#1e293b", fontWeight: 700 };
+const numBadge: React.CSSProperties = {
+  flexShrink: 0, width: "24px", height: "24px", borderRadius: "50%",
+  background: "#eff6ff", color: "#1e3799", fontSize: "12px", fontWeight: 800,
+  display: "flex", alignItems: "center", justifyContent: "center",
+  marginTop: "1px",
+};
+
 const SECTIONS = [
   {
     titre: "1. Épreuves générales vs Épreuves techniques : Une distinction majeure",
@@ -166,18 +180,6 @@ const SECTIONS = [
     ),
   },
 ];
-
-// Styles partagés
-const p:    React.CSSProperties = { fontSize: "14px", color: "#475569", lineHeight: 1.7, margin: "0 0 10px" };
-const ul:   React.CSSProperties = { margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "8px" };
-const li:   React.CSSProperties = { fontSize: "14px", color: "#475569", lineHeight: 1.7, paddingLeft: "16px", borderLeft: "2px solid #e2e8f0" };
-const strong: React.CSSProperties = { color: "#1e293b", fontWeight: 700 };
-const numBadge: React.CSSProperties = {
-  flexShrink: 0, width: "24px", height: "24px", borderRadius: "50%",
-  background: "#eff6ff", color: "#1e3799", fontSize: "12px", fontWeight: 800,
-  display: "flex", alignItems: "center", justifyContent: "center",
-  marginTop: "1px",
-};
 
 export default function GuideSection() {
   return (
