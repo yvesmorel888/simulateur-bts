@@ -6,6 +6,8 @@ import { calculerResultat, NoteEpreuve } from "@/lib/calcul";
 import ResultatPanel from "@/components/ResultatPanel";
 import NoteInput, { Modalite } from "@/components/NoteInput";
 import BTSCombobox from "@/components/BTSCombobox";
+import IntroSection from "@/components/IntroSection";
+import GuideSection from "@/components/GuideSection";
 
 function initNotes(bts: BTS): NoteEpreuve[] {
   return bts.epreuves.map((e) => ({ epreuveId: e.id, note: 10 }));
@@ -124,6 +126,10 @@ export default function SimulateurBTS() {
 
       {/* ── Main ───────────────────────────────────────────────────────────── */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+        {/* ── Introduction ── */}
+        <IntroSection />
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 items-start">
 
           {/* ── Colonne gauche : saisie ──────────────────────────────────── */}
@@ -335,6 +341,10 @@ export default function SimulateurBTS() {
           </div>
 
         </div>
+
+        {/* ── Guide pédagogique ── */}
+        <GuideSection />
+
       </main>
 
       {/* ── Footer ─────────────────────────────────────────────────────────── */}
