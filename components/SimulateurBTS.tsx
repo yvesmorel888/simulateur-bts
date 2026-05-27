@@ -124,6 +124,33 @@ export default function SimulateurBTS() {
         </div>
       </header>
 
+      {/* ── Bandeau Bêta ───────────────────────────────────────────────────── */}
+      <div style={{
+        background: "#fefce8", borderBottom: "1px solid #fde68a",
+        padding: "10px 0",
+      }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6" style={{
+          display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap",
+        }}>
+          <span style={{
+            flexShrink: 0, fontSize: "11px", fontWeight: 800, letterSpacing: ".06em",
+            textTransform: "uppercase", color: "#92400e",
+            background: "#fcd34d", padding: "2px 8px", borderRadius: "20px",
+          }}>
+            Bêta
+          </span>
+          <p style={{ margin: 0, fontSize: "13px", color: "#78350f", flex: 1, lineHeight: 1.5 }}>
+            Cet outil est en version bêta — les résultats sont indicatifs et doivent être vérifiés avec votre établissement.{" "}
+            <a
+              href="mailto:contact@esully.fr?subject=Simulateur BTS — retour bêta"
+              style={{ color: "#92400e", fontWeight: 700, textDecoration: "underline" }}
+            >
+              Vos retours sont les bienvenus : contact@esully.fr
+            </a>
+          </p>
+        </div>
+      </div>
+
       {/* ── Main ───────────────────────────────────────────────────────────── */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 
